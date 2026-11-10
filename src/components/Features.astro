@@ -1,0 +1,290 @@
+---
+import { assets } from '../data/assets';
+const capabilities = [
+  'Lectura y verificación documental',
+  'Pre check-in y firma digital',
+  'Registro digital, PMS y envío a SES Hospedajes',
+];
+---
+
+<section
+  id="soluciones"
+  class="section solutions"
+  aria-labelledby="solutions-title"
+>
+  <div class="container">
+    <h2 id="solutions-title">Soluciones Binding.</h2>
+    <div class="solutions-panel">
+      <article class="identity-card" aria-labelledby="identity-title">
+        <div class="identity-overview">
+          <div class="identity-brand">
+            <h3 id="identity-title">
+              <img
+                src={assets.identity.src}
+                width={assets.identity.width}
+                height={assets.identity.height}
+                alt={assets.identity.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </h3>
+            <img
+              class="mascot"
+              src={assets.mascot.src}
+              width={assets.mascot.width}
+              height={assets.mascot.height}
+              alt=""
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div class="identity-copy">
+            <p class="identity-proposition">
+              Check-in digital y verificación de identidad en segundos
+            </p>
+            <p class="identity-description">
+              Lectura de documentos, validación de identidad, firma electrónica
+              e integración con PMS en una solución preparada para hoteles y
+              cadenas.
+            </p>
+          </div>
+        </div>
+        <div class="identity-details">
+          <h4>Qué incluye</h4>
+          <ul class="capabilities" role="list">
+            {capabilities.map((capability) => (
+              <li>{capability}</li>
+            ))}
+          </ul>
+          <div class="integration-brands">
+            <p>Integraciones con sistemas hoteleros</p>
+            <div class="integration-logos">
+              <a
+                href="https://finder.sihot.com/products/Binding/"
+                aria-label="Binding en el directorio de SIHOT"
+              >
+                <img
+                  src={assets.sihot.src}
+                  width={assets.sihot.width}
+                  height={assets.sihot.height}
+                  alt={assets.sihot.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+              <a
+                href="https://marketplace.oracle.com/listings/bindingidentity/ocid1.mktpublisting.oc1.iad.amaaaaaa7n473kaa3ymsluywmblyd45cpwiemoxa5l4fx2if7g3aqevglolq"
+                aria-label="Binding Identity en Oracle Marketplace"
+              >
+                <img
+                  src={assets.oracle.src}
+                  width={assets.oracle.width}
+                  height={assets.oracle.height}
+                  alt={assets.oracle.alt}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </article>
+      <section class="services" aria-labelledby="services-title">
+        <h3 id="services-title">Servicios complementarios</h3>
+        <div class="service-grid">
+          <article class="service-card">
+            <h4>Consultoría operativa</h4>
+            <p>
+              Rediseño de procesos para reducir tareas manuales y coordinar la
+              recepción.
+            </p>
+          </article>
+          <article class="service-card">
+            <h4>Integraciones hoteleras</h4>
+            <p>
+              Conexión entre herramientas para compartir datos y evitar tareas
+              duplicadas.
+            </p>
+          </article>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+<style>
+  h2 {
+    margin-bottom: var(--space-8);
+  }
+  .identity-card,
+  .identity-overview {
+    display: grid;
+    gap: var(--space-6);
+    min-width: 0;
+  }
+  .identity-card {
+    padding: var(--space-6);
+    background: var(--color-primary-soft);
+    border: var(--border-width) solid var(--color-line);
+    border-radius: var(--radius-panel);
+  }
+  .identity-details {
+    display: grid;
+    gap: var(--space-4);
+    align-content: start;
+    min-width: 0;
+  }
+  .identity-details > h4 {
+    margin: 0;
+    font-size: var(--font-body);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .identity-brand {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-4);
+    align-items: center;
+  }
+  .identity-brand h3 {
+    min-width: 0;
+  }
+  .identity-brand h3 img {
+    width: 12rem;
+    height: auto;
+  }
+  .mascot {
+    width: var(--space-16);
+    height: auto;
+  }
+  .identity-proposition {
+    max-width: 30ch;
+    font-size: var(--font-value);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .identity-description {
+    margin-top: var(--space-4);
+    color: var(--color-muted);
+    font-size: var(--font-small);
+  }
+  .capabilities {
+    display: grid;
+    gap: var(--space-3);
+    padding: 0 0 0 var(--space-4);
+    margin: 0;
+  }
+  .capabilities li {
+    padding-inline-start: var(--space-1);
+    font-size: var(--font-small);
+    line-height: 1.45;
+    font-weight: 400;
+  }
+  .capabilities li::marker {
+    color: var(--color-primary);
+  }
+  .integration-brands {
+    padding-top: var(--space-4);
+    border-top: var(--border-width) solid var(--color-line);
+  }
+  .integration-brands > p {
+    color: var(--color-muted);
+    font-size: var(--font-caption);
+  }
+  .integration-logos {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-6);
+  }
+  .integration-brands a {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--target-size);
+  }
+  .integration-brands img {
+    height: auto;
+    max-height: var(--space-6);
+    width: auto;
+  }
+  .services {
+    display: grid;
+    gap: var(--space-4);
+    margin-top: var(--space-6);
+  }
+  .services > h3 {
+    font-size: var(--font-heading-small);
+  }
+  .service-grid {
+    display: grid;
+    gap: var(--space-4);
+  }
+  .service-card {
+    display: grid;
+    align-content: start;
+    gap: var(--space-2);
+    min-width: 0;
+    padding: var(--space-4);
+    background: var(--color-surface);
+    border: var(--border-width) solid var(--color-line);
+    border-radius: var(--radius-panel);
+  }
+  .service-card h4 {
+    margin: 0;
+    font-size: var(--font-lead);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.02em;
+  }
+  .service-card p {
+    color: var(--color-muted);
+    font-size: var(--font-small);
+  }
+  @media (min-width: 48rem) {
+    .identity-card {
+      padding: var(--space-8);
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+      gap: var(--space-8);
+    }
+    .identity-details {
+      padding-inline-start: var(--space-6);
+      border-inline-start: var(--border-width) solid var(--color-line);
+    }
+    .service-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) and
+      (not (animation-trigger: --binding-solutions play-once)) {
+      .solutions-panel {
+        animation-name: solutions-arrive;
+        animation-duration: auto;
+        animation-timing-function: var(--ease-out);
+        animation-fill-mode: both;
+        animation-timeline: view();
+        animation-range: entry 0% entry 80%;
+      }
+    }
+    @supports (animation-trigger: --binding-solutions play-once) and
+      (timeline-trigger: --binding-solutions view() entry 20% exit 100%) {
+      .solutions-panel {
+        timeline-trigger: --binding-solutions view() entry 20% exit 100%;
+        animation: solutions-arrive 600ms var(--ease-out) backwards;
+        animation-trigger: --binding-solutions play-once;
+      }
+    }
+    .solutions-panel:focus-within {
+      transform: none !important;
+    }
+  }
+  @keyframes solutions-arrive {
+    from {
+      transform: translateY(16px);
+    }
+    to {
+      transform: none;
+    }
+  }
+</style>

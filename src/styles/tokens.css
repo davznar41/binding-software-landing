@@ -1,0 +1,82 @@
+:root {
+  --color-primary: #7f4790;
+  --color-primary-hover: #653475;
+  --color-primary-soft: #efe6f2;
+  --site-header-height: 4.5625rem;
+  --hero-overlay-desktop:
+    linear-gradient(
+      to top,
+      rgb(20 14 28 / 88%),
+      rgb(20 14 28 / 75%) 13%,
+      transparent 32%
+    ),
+    linear-gradient(
+      to right,
+      rgb(20 14 28 / 90%),
+      rgb(20 14 28 / 82%) 43%,
+      rgb(20 14 28 / 76%) 62%,
+      rgb(20 14 28 / 28%)
+    );
+  --hero-overlay-mobile: linear-gradient(
+    to bottom,
+    rgb(20 14 28 / 84%),
+    rgb(20 14 28 / 74%) 38%,
+    rgb(20 14 28 / 74%) 65%,
+    rgb(20 14 28 / 90%)
+  );
+  --color-text: #241d2d;
+  --color-muted: #625969;
+  --color-background: #ffffff;
+  --color-surface: #f7f4f8;
+  --color-dark: #21172b;
+  --color-dark-surface: #30223c;
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: #d7cddd;
+  --color-accent: #e5b9ee;
+  --color-line: #dcd3e0;
+  --color-dark-line: #66536f;
+  --color-focus: #974da9;
+  --font-family: 'Inter Variable', Arial, Helvetica, sans-serif;
+  --font-small: 0.9375rem;
+  --font-caption: 0.8125rem;
+  --font-body: 1rem;
+  --font-lead: 1.125rem;
+  --font-heading-small: 1.25rem;
+  --font-value: clamp(1.5rem, 1.1rem + 1vw, 1.875rem);
+  --font-step: 2.5rem;
+  --font-document-heading: 1.5rem;
+  --font-document-title: clamp(2.25rem, 1.5rem + 2.5vw, 3.5rem);
+  --font-heading: clamp(1.875rem, 1.3rem + 1.5vw, 2.5rem);
+  --font-display: clamp(2.5rem, 1.8rem + 2.7vw, 4.25rem);
+  --line-body: 1.65;
+  --line-heading: 1.15;
+  --tracking-heading: -0.035em;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-section: clamp(3rem, 5vw, 5rem);
+  --container-width: 73rem;
+  --reading-width: 70ch;
+  --page-gutter: clamp(1.25rem, 4vw, 3rem);
+  --radius-button: 0.375rem;
+  --radius-panel: 1rem;
+  --border-width: 1px;
+  --target-size: 2.75rem;
+  --transition-duration: 200ms;
+  --motion-entry-duration: 560ms;
+  --motion-entry-distance: 16px;
+  --motion-stagger: 120ms;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (min-width: 60.0625rem) {
+  :root {
+    --site-header-height: 5.5625rem;
+  }
+}

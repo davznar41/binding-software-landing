@@ -1,0 +1,217 @@
+---
+const steps = [
+  {
+    title: 'Inicia el registro',
+    text: 'Antes de llegar o en el propio hotel.',
+  },
+  {
+    title: 'Valida su identidad',
+    text: 'Se verifica la documentación del huésped.',
+  },
+  {
+    title: 'Firma y conexión',
+    text: 'El registro llega al sistema de gestión.',
+  },
+  {
+    title: 'Recepción preparada',
+    text: 'Menos tareas, más tiempo para recibir.',
+  },
+];
+---
+
+<section id="proceso" class="section process" aria-labelledby="process-title">
+  <div class="container">
+    <div class="process-intro">
+      <h2 id="process-title">Cuatro pasos. Una llegada más sencilla.</h2>
+    </div>
+    <ol role="list">
+      {steps.map((step, index) => (
+        <li>
+          <span aria-hidden="true" class="step-number">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <div>
+            <h3>{step.title}</h3>
+            <p>{step.text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+    <p class="process-note">El flujo se adapta a cada hotel.</p>
+  </div>
+</section>
+<style>
+  .process {
+    background: var(--color-surface);
+  }
+  .process-intro {
+    display: grid;
+    gap: var(--space-6);
+  }
+  ol {
+    display: grid;
+    gap: var(--space-6);
+    margin: var(--space-8) 0 var(--space-6);
+    padding: 0;
+    list-style: none;
+  }
+  li {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    gap: var(--space-4);
+  }
+  li:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    width: var(--border-width);
+    left: 1.75rem;
+    top: calc(3.5rem + var(--space-3));
+    bottom: calc(var(--space-3) - var(--space-6));
+    background: var(--color-primary);
+    opacity: 0.3;
+    transform-origin: center;
+  }
+  .step-number {
+    display: grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border: var(--border-width) solid var(--color-line);
+    border-radius: 0.75rem;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    font-size: var(--font-step);
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: var(--tracking-heading);
+    font-variant-numeric: tabular-nums;
+  }
+  h3 {
+    font-size: var(--font-lead);
+    line-height: 1.35;
+  }
+  li p {
+    color: var(--color-muted);
+    margin-top: var(--space-3);
+    font-size: var(--font-small);
+    max-width: 38ch;
+  }
+  .process-note {
+    color: var(--color-muted);
+    font-size: var(--font-caption);
+  }
+  @media (min-width: 40rem) {
+    ol {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-8);
+    }
+    li {
+      display: block;
+    }
+    .step-number {
+      margin-bottom: var(--space-6);
+    }
+    li:not(:last-child)::after {
+      display: none;
+    }
+  }
+  @media (min-width: 64rem) {
+    ol {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    li:not(:last-child)::after {
+      display: block;
+      top: 1.75rem;
+      left: calc(3.5rem + var(--space-4));
+      right: 0;
+      bottom: auto;
+      width: auto;
+      height: var(--border-width);
+    }
+  }
+  li:nth-child(2) {
+    --step-delay: 100ms;
+    --step-start: 10%;
+    --step-end: 65%;
+  }
+  li:nth-child(3) {
+    --step-delay: 200ms;
+    --step-start: 20%;
+    --step-end: 75%;
+  }
+  li:nth-child(4) {
+    --step-delay: 300ms;
+    --step-start: 30%;
+    --step-end: 85%;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) and
+      (not (animation-trigger: --binding-process play-once)) {
+      ol {
+        view-timeline-name: --binding-process-view;
+        view-timeline-axis: block;
+      }
+      .step-number,
+      li:not(:last-child)::after {
+        animation-duration: auto;
+        animation-timing-function: var(--ease-out);
+        animation-fill-mode: both;
+        animation-timeline: --binding-process-view;
+        animation-range: entry var(--step-start, 0%) entry var(--step-end, 55%);
+      }
+      .step-number {
+        animation-name: step-arrive;
+      }
+      li:not(:last-child)::after {
+        animation-name: connector-arrive;
+      }
+    }
+    @supports (animation-trigger: --binding-process play-once) and
+      (timeline-trigger: --binding-process view() entry 25% exit 100%) {
+      ol {
+        timeline-trigger: --binding-process view() entry 25% exit 100%;
+      }
+      .step-number {
+        animation: step-arrive 480ms var(--ease-out) var(--step-delay, 0ms)
+          backwards;
+        animation-trigger: --binding-process play-once;
+      }
+      li:not(:last-child)::after {
+        animation: connector-arrive 480ms var(--ease-out)
+          calc(var(--step-delay, 0ms) + 100ms) backwards;
+        animation-trigger: --binding-process play-once;
+      }
+    }
+  }
+  @keyframes step-arrive {
+    from {
+      transform: translateY(12px) scale(0.94);
+    }
+    to {
+      transform: none;
+    }
+  }
+  @keyframes connector-arrive {
+    from {
+      opacity: 0.16;
+      transform: scaleY(0.6);
+    }
+    to {
+      opacity: 0.3;
+      transform: none;
+    }
+  }
+  @media (min-width: 64rem) {
+    @keyframes connector-arrive {
+      from {
+        opacity: 0.16;
+        transform: scaleX(0.6);
+      }
+      to {
+        opacity: 0.3;
+        transform: none;
+      }
+    }
+  }
+</style>

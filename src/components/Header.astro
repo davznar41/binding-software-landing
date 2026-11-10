@@ -1,0 +1,444 @@
+---
+import { assets } from '../data/assets';
+const onHome = Astro.url.pathname === '/';
+const links = [
+  { label: 'Inicio', href: '/' },
+  {
+    label: 'Por qué Binding',
+    href: 'https://bindingsoftware.com/por-que-binding/',
+  },
+  { label: 'I+D+i', href: 'https://bindingsoftware.com/idi/' },
+  {
+    label: 'Comparador 360º',
+    href: 'https://bindingsoftware.com/check-in-360/',
+  },
+  { label: 'Contacto', href: 'https://bindingsoftware.com/contacto/' },
+  { label: 'Login', href: 'https://app.bindingid.com/login' },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label="Binding Software, inicio">
+      <img
+        src={assets.brand.src}
+        width="152"
+        height="38"
+        alt={assets.brand.alt}
+      />
+    </a>
+    <div class="desktop-navigation">
+      <nav aria-label="Principal">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            aria-current={link.href === '/' && onHome ? 'page' : undefined}
+            class:list={[{ login: link.label === 'Login' }]}
+          >
+            {link.label === 'Login' && (
+              <span class="login-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M15 3H18C19.1046 3 20 3.89543 20 5V19C20 20.1046 19.1046 21 18 21H15M10 17L15 12L10 7M15 12H4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            )}
+            {link.label}
+          </a>
+        ))}
+      </nav>
+      <div class="languages" role="group" aria-label="Idioma">
+        <span lang="es">
+          ES<span class="sr-only"> (Español, idioma actual)</span>
+        </span>
+        <a
+          href="https://bindingsoftware.com/en/"
+          lang="en"
+          hreflang="en"
+          aria-label="English, sitio oficial en inglés"
+        >
+          EN
+        </a>
+      </div>
+    </div>
+    <details class="mobile-navigation">
+      <summary>
+        <span class="sr-only">Menú</span>
+        <span class="menu-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="mobile-panel">
+        <nav aria-label="Principal">
+          {links.map((link) => (
+            <a
+              href={link.href}
+              aria-current={link.href === '/' && onHome ? 'page' : undefined}
+              class:list={[{ login: link.label === 'Login' }]}
+            >
+              {link.label === 'Login' && (
+                <span class="login-icon" aria-hidden="true">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M15 3H18C19.1046 3 20 3.89543 20 5V19C20 20.1046 19.1046 21 18 21H15M10 17L15 12L10 7M15 12H4"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              )}
+              {link.label}
+            </a>
+          ))}
+        </nav>
+        <div class="languages" role="group" aria-label="Idioma">
+          <span lang="es">
+            ES<span class="sr-only"> (Español, idioma actual)</span>
+          </span>
+          <a
+            href="https://bindingsoftware.com/en/"
+            lang="en"
+            hreflang="en"
+            aria-label="English, sitio oficial en inglés"
+          >
+            EN
+          </a>
+        </div>
+      </div>
+    </details>
+  </div>
+</header>
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>('.mobile-navigation');
+  if (menu) {
+    const summary = menu.querySelector('summary');
+    menu.addEventListener('focusout', (event) => {
+      if (
+        event.relatedTarget instanceof Node &&
+        !menu.contains(event.relatedTarget)
+      )
+        menu.open = false;
+    });
+    menu.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menu.open) {
+        menu.open = false;
+        summary?.focus();
+        event.preventDefault();
+      }
+    });
+    menu.querySelectorAll('a').forEach((link) =>
+      link.addEventListener('click', () => {
+        menu.open = false;
+      }),
+    );
+    const header = menu.closest('header');
+    if (header) {
+      header.classList.add('menu-enhanced');
+      new ResizeObserver(() => {
+        document.documentElement.style.setProperty(
+          '--site-header-height',
+          `${header.getBoundingClientRect().height}px`,
+        );
+      }).observe(header);
+    }
+  }
+</script>
+<style>
+  @font-face {
+    font-family: 'Montserrat Header';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('/assets/fonts/montserrat-latin-600.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'Montserrat Header';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('/assets/fonts/montserrat-latin-700.woff2') format('woff2');
+  }
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background:
+      linear-gradient(
+        rgb(18 13 25 / 88%),
+        rgb(18 13 25 / 65%) 60%,
+        rgb(18 13 25 / 25%)
+      ),
+      var(--color-dark);
+    color: var(--color-on-dark);
+    border-bottom: 1px solid var(--color-dark-line);
+    font-family: 'Montserrat Header', var(--font-family);
+  }
+  .header-inner {
+    width: min(calc(100% - 2rem), 86.25rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.35rem;
+    min-height: 4.5rem;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--target-size);
+    flex-shrink: 0;
+  }
+  .brand img {
+    width: 9.5rem;
+    height: auto;
+  }
+  .desktop-navigation {
+    display: none;
+  }
+  nav a,
+  .languages > a,
+  .languages > span {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--target-size);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+  nav a {
+    color: var(--color-on-dark-muted);
+    text-decoration: none;
+  }
+  nav a:hover,
+  nav a[aria-current] {
+    color: white;
+  }
+  nav a[aria-current] {
+    text-decoration: underline;
+    text-underline-offset: 0.5em;
+    text-decoration-thickness: 2px;
+  }
+  .login {
+    gap: 0.4rem;
+    padding-inline: 0.8rem;
+    border: 1px solid var(--color-dark-line);
+    border-radius: 0.875rem;
+    background: rgb(255 255 255 / 8%);
+  }
+  .login-icon {
+    padding: 0.25rem;
+    background: rgb(255 255 255 / 8%);
+    border-radius: 0.375rem;
+  }
+  .login:hover {
+    background: var(--color-primary);
+  }
+  .languages {
+    display: flex;
+    gap: 0.125rem;
+    align-items: center;
+    padding: 0.125rem;
+    border: 1px solid var(--color-dark-line);
+    border-radius: 2rem;
+  }
+  .languages > a,
+  .languages > span {
+    justify-content: center;
+    min-width: var(--target-size);
+    padding-inline: 0.7rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  .languages > span {
+    background: var(--color-primary);
+    color: white;
+  }
+  .languages a {
+    color: var(--color-on-dark-muted);
+    text-decoration: none;
+  }
+  .languages a:hover {
+    color: white;
+    background: var(--color-dark-surface);
+  }
+  .mobile-navigation {
+    margin-left: auto;
+  }
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.875rem;
+    min-width: 2.875rem;
+    border: 1px solid var(--color-dark-line);
+    border-radius: 0.875rem;
+    cursor: pointer;
+    list-style: none;
+    background: rgb(255 255 255 / 8%);
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary {
+    transition:
+      background-color var(--transition-duration) ease,
+      border-color var(--transition-duration) ease;
+  }
+  summary:hover {
+    background: var(--color-dark-surface);
+  }
+  .mobile-navigation[open] summary {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary);
+  }
+  .menu-icon {
+    position: relative;
+    width: 1.125rem;
+    height: 0.875rem;
+    background: linear-gradient(currentColor, currentColor) center/100% 2px
+      no-repeat;
+    transition: background-size var(--transition-duration) var(--ease-out);
+  }
+  .menu-icon::before,
+  .menu-icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: currentColor;
+    transition: transform var(--transition-duration) var(--ease-out);
+  }
+  .menu-icon::before {
+    top: 0;
+  }
+  .menu-icon::after {
+    bottom: 0;
+  }
+  details[open] .menu-icon {
+    background-size: 0 2px;
+  }
+  details[open] .menu-icon::before {
+    transform: translateY(6px) rotate(45deg);
+  }
+  details[open] .menu-icon::after {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+  .mobile-navigation:not([open]) .mobile-panel {
+    display: none;
+  }
+  .mobile-panel {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: calc(100dvh - var(--site-header-height));
+    overflow-y: auto;
+    scroll-padding-block: 8px;
+    padding: var(--space-4);
+    background: var(--color-dark);
+    border-bottom: 1px solid var(--color-dark-line);
+  }
+  .mobile-panel nav {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .mobile-panel nav a {
+    padding-inline: var(--space-3);
+  }
+  .mobile-panel a {
+    scroll-margin-block: 8px;
+  }
+  .mobile-panel .languages {
+    margin-top: var(--space-4);
+    width: fit-content;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    details[open] .mobile-panel {
+      animation: menu-arrive var(--transition-duration) var(--ease-out);
+    }
+  }
+  @keyframes menu-arrive {
+    from {
+      transform: translateY(-8px);
+    }
+    to {
+      transform: none;
+    }
+  }
+  @media (hover: hover) {
+    nav a:not(.login):not([aria-current]) {
+      position: relative;
+    }
+    nav a:not(.login):not([aria-current])::after {
+      content: '';
+      position: absolute;
+      inset-inline: 0;
+      bottom: 0.45rem;
+      height: 2px;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition-duration) var(--ease-out);
+    }
+    nav a:not(.login):not([aria-current]):hover::after {
+      transform: scaleX(1);
+    }
+  }
+  @media (forced-colors: active) {
+    .menu-icon {
+      forced-color-adjust: none;
+      color: CanvasText;
+    }
+  }
+  @media not all and (min-width: 60.0625rem) {
+    .site-header:not(.menu-enhanced) {
+      position: relative;
+    }
+    .site-header:not(.menu-enhanced) .header-inner {
+      flex-wrap: wrap;
+    }
+    .site-header:not(.menu-enhanced) .mobile-navigation[open] {
+      width: 100%;
+    }
+    .site-header:not(.menu-enhanced) summary {
+      width: fit-content;
+      margin-left: auto;
+    }
+    .site-header:not(.menu-enhanced) .mobile-panel {
+      position: static;
+      max-height: none;
+    }
+  }
+  @media (min-width: 60.0625rem) {
+    .header-inner {
+      display: grid;
+      grid-template-columns: minmax(9.5rem, 1fr) minmax(0, auto) minmax(
+          6rem,
+          1fr
+        );
+      min-height: 5.5rem;
+    }
+    .mobile-navigation {
+      display: none;
+    }
+    .desktop-navigation {
+      display: contents;
+    }
+    .desktop-navigation nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem clamp(0.95rem, 1.35vw, 1.55rem);
+      min-width: 0;
+    }
+    .languages {
+      justify-self: end;
+    }
+  }
+</style>

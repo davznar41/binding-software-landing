@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Accesibilidad | Binding Software"
+  description="Información sobre la accesibilidad de este sitio web de Binding Software: medidas implementadas, objetivo WCAG 2.2 AA y estado de evaluación."
+>
+  <article class="document container">
+    <div class="document-inner">
+      <a href="/" class="text-link">
+        <span aria-hidden="true">←</span> Volver al inicio
+      </a>
+      <h1>Declaración de accesibilidad</h1>
+      <p class="intro">
+        Información sobre las medidas de accesibilidad, el alcance de la
+        evaluación y los canales de contacto de este sitio web.
+      </p>
+      <div class="notice">
+        <strong>Estado de evaluación</strong>
+        <p>
+          Este sitio web se ha desarrollado teniendo en cuenta las pautas WCAG
+          2.2 de nivel AA. La evaluación integral de conformidad y la validación
+          corporativa de esta declaración están pendientes de completarse.
+        </p>
+      </div>
+      <nav class="contents" aria-label="En esta página">
+        <h2>En esta página</h2>
+        <ul>
+          <li>
+            <a href="#compromiso">Accesibilidad y ámbito</a>
+          </li>
+          <li>
+            <a href="#evaluacion">Estado de evaluación</a>
+          </li>
+          <li>
+            <a href="#medidas">Medidas implementadas</a>
+          </li>
+          <li>
+            <a href="#limitaciones">Limitaciones y revisiones pendientes</a>
+          </li>
+          <li>
+            <a href="#metodologia">Preparación y metodología</a>
+          </li>
+          <li>
+            <a href="#comunicacion">Comunicación y referencias</a>
+          </li>
+        </ul>
+      </nav>
+      <section aria-labelledby="compromiso">
+        <h2 id="compromiso">Accesibilidad y ámbito</h2>
+        <p>
+          La estructura y la navegación de este sitio se han diseñado para
+          facilitar el acceso a la información desde distintos dispositivos y
+          formas de interacción.
+        </p>
+        <p>
+          Esta información se refiere a las páginas de inicio y accesibilidad de
+          este sitio. No comprende otros sitios web de Binding Software, sus
+          productos ni los servicios externos enlazados.
+        </p>
+      </section>
+      <section aria-labelledby="evaluacion">
+        <h2 id="evaluacion">Estado de evaluación</h2>
+        <p>
+          Se han realizado comprobaciones técnicas, pruebas automáticas de
+          accesibilidad y revisiones de navegación, contraste y adaptación a
+          distintos tamaños de pantalla.
+        </p>
+        <p>
+          Estas comprobaciones tienen un alcance limitado y no constituyen una
+          evaluación integral ni una certificación. No se declara un nivel de
+          conformidad oficial.
+        </p>
+      </section>
+      <section aria-labelledby="medidas">
+        <h2 id="medidas">Medidas implementadas</h2>
+        <ul>
+          <li>
+            Idioma español declarado, títulos diferenciados y encabezados
+            organizados.
+          </li>
+          <li>
+            Regiones semánticas, enlaces con texto descriptivo y salto al
+            contenido principal.
+          </li>
+          <li>
+            Navegación mediante enlaces nativos y estilos de foco visibles.
+          </li>
+          <li>
+            Diseño adaptable, tamaños de texto relativos y anchura de lectura
+            limitada.
+          </li>
+          <li>
+            Colores elegidos para favorecer el contraste, sin depender solo del
+            color para identificar enlaces.
+          </li>
+          <li>
+            Recursos decorativos excluidos de la lectura, sin movimiento
+            continuo y con animaciones desactivadas al solicitar movimiento
+            reducido.
+          </li>
+        </ul>
+      </section>
+      <section aria-labelledby="limitaciones">
+        <h2 id="limitaciones">Limitaciones y revisiones pendientes</h2>
+        <p>
+          Las herramientas automáticas solo detectan una parte de las posibles
+          barreras. Quedan pendientes pruebas reales con lectores de pantalla,
+          personas usuarias y una revisión especializada de todos los criterios
+          aplicables.
+        </p>
+        <p>
+          Los enlaces externos llevan a sitios fuera del alcance de esta
+          implementación. No se atribuyen a esta web los resultados de
+          evaluaciones de otras entidades.
+        </p>
+      </section>
+      <section aria-labelledby="metodologia">
+        <h2 id="metodologia">Preparación y metodología</h2>
+        <p>
+          La revisión realizada combina el análisis de la estructura HTML y de
+          los estilos con pruebas automáticas y comprobaciones de navegación con
+          teclado, contraste y adaptación.
+        </p>
+        <p>
+          La evaluación deberá ampliarse con tecnologías de apoyo y pruebas de
+          uso. Cualquier cambio relevante en el contenido o las funcionalidades
+          requerirá revisar esta información.
+        </p>
+      </section>
+      <section aria-labelledby="comunicacion">
+        <h2 id="comunicacion">Comunicación y referencias</h2>
+        <p>
+          Para comunicar consultas sobre este sitio, puede utilizar la{' '}
+          <a href="https://bindingsoftware.com/contacto/">página oficial de contacto de Binding Software</a>.
+          El canal específico para comunicaciones de accesibilidad está
+          pendiente de validación.
+        </p>
+        <p>
+          El objetivo técnico son las{' '}
+          <a href="https://www.w3.org/TR/WCAG22/">Pautas de Accesibilidad para el Contenido Web, WCAG 2.2</a>,
+          en sus niveles A y AA. Esta referencia no implica una evaluación de
+          las obligaciones legales particulares de la empresa.
+        </p>
+      </section>
+      <a class="text-link return" href="/">
+        Volver a la página de inicio <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </article>
+</BaseLayout>
