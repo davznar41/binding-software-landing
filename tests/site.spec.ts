@@ -283,7 +283,7 @@ test('navegación, estructura y cobertura comercial', async ({ page }) => {
       .getByRole('navigation', { name: 'Principal' })
       .getByRole('link', { name: 'Contacto', exact: true }),
   ).toHaveAttribute('href', 'https://bindingsoftware.com/contacto/');
-  await expect(page.locator('main > section')).toHaveCount(4);
+  await expect(page.locator('main > section')).toHaveCount(5);
   await expect(page.locator('.operational-results > li')).toHaveCount(3);
   await expect(page.locator('.results-contact')).toHaveAttribute(
     'href',
@@ -447,7 +447,7 @@ test('contraste de combinaciones renderizadas y estados', async ({ page }) => {
 
 async function verifyHeroContrast(page: Page, width: number, filename: string) {
   const text = await page
-    .locator('.hero-kicker, .hero h1, .hero .lead, .hero-bottom')
+    .locator('.hero-kicker, .hero h1, .hero .lead')
     .evaluateAll((roots) =>
       roots.flatMap((root) => {
         const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
@@ -458,6 +458,7 @@ async function verifyHeroContrast(page: Page, width: number, filename: string) {
           const range = document.createRange();
           range.selectNodeContents(node);
           nodes.push({
+            region: root.id || root.className,
             text: node.textContent.trim(),
             color: getComputedStyle(node.parentElement!).color,
             rects: [...range.getClientRects()].map((r) => ({
@@ -476,7 +477,7 @@ async function verifyHeroContrast(page: Page, width: number, filename: string) {
   // Ocultar texto conserva exactamente sus posiciones y evita muestrear glifos.
   const contrastStyle = await page.addStyleTag({
     content:
-      '.hero { background: white !important; } .hero-backdrop, .hero-content, .hero-bottom { visibility: hidden !important; }',
+      '.hero { background: white !important; } .hero-backdrop, .hero-content { visibility: hidden !important; }',
   });
   const png = await page.screenshot({ fullPage: true });
   const { data, info } = (await sharp(png)
@@ -539,7 +540,9 @@ async function verifyHeroContrast(page: Page, width: number, filename: string) {
       2,
     ),
   );
-  expect(report.length).toBeGreaterThanOrEqual(5);
+  expect(report.map(({ region }) => region)).toEqual(
+    expect.arrayContaining(['hero-kicker', 'hero-title', 'lead']),
+  );
   for (const item of report)
     expect(item.minimumRatio, JSON.stringify(item)).toBeGreaterThanOrEqual(4.5);
   await contrastStyle.evaluate((el) => el.parentNode?.removeChild(el));

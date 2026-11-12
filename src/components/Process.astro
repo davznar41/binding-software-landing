@@ -1,4 +1,6 @@
 ---
+import Arrow from './Arrow.astro';
+
 const steps = [
   {
     title: 'Inicia el registro',
@@ -21,8 +23,9 @@ const steps = [
 
 <section id="proceso" class="section process" aria-labelledby="process-title">
   <div class="container">
-    <div class="process-intro">
-      <h2 id="process-title">Cuatro pasos. Una llegada más sencilla.</h2>
+    <div class="section-heading">
+      <h2 id="process-title">Cuatro pasos. Una llegada más sencilla</h2>
+      <p>El flujo se adapta a cada hotel.</p>
     </div>
     <ol role="list">
       {steps.map((step, index) => (
@@ -34,54 +37,60 @@ const steps = [
             <h3>{step.title}</h3>
             <p>{step.text}</p>
           </div>
+          {index < steps.length - 1 && (
+            <span class="step-arrow" aria-hidden="true"><Arrow /></span>
+          )}
         </li>
       ))}
     </ol>
-    <p class="process-note">El flujo se adapta a cada hotel.</p>
   </div>
 </section>
 <style>
   .process {
+    --step-marker-size: 2.25rem;
+    --process-gap: var(--space-8);
     background: var(--color-surface);
-  }
-  .process-intro {
-    display: grid;
-    gap: var(--space-6);
   }
   ol {
     display: grid;
-    gap: var(--space-6);
-    margin: var(--space-8) 0 var(--space-6);
+    gap: var(--process-gap);
+    margin: 0;
     padding: 0;
     list-style: none;
   }
   li {
     position: relative;
     display: grid;
-    grid-template-columns: 3.5rem 1fr;
+    grid-template-columns: var(--step-marker-size) minmax(0, 1fr);
+    align-content: start;
     gap: var(--space-4);
+    padding: var(--space-4);
+    border: var(--border-width) solid var(--color-line);
+    border-radius: var(--radius-panel);
+    background: var(--color-background);
   }
-  li:not(:last-child)::after {
-    content: '';
+  .step-arrow {
     position: absolute;
-    width: var(--border-width);
-    left: 1.75rem;
-    top: calc(3.5rem + var(--space-3));
-    bottom: calc(var(--space-3) - var(--space-6));
-    background: var(--color-primary);
-    opacity: 0.3;
-    transform-origin: center;
+    display: grid;
+    place-items: center;
+    inline-size: var(--space-6);
+    block-size: var(--space-6);
+    inset-inline-start: 50%;
+    inset-block-start: calc(100% + var(--process-gap) / 2);
+    translate: -50% -50%;
+    rotate: 90deg;
+    color: var(--color-primary);
   }
   .step-number {
     display: grid;
     place-items: center;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: var(--step-marker-size);
+    height: var(--step-marker-size);
     border: var(--border-width) solid var(--color-line);
-    border-radius: 0.75rem;
+    border-radius: 50%;
     background: var(--color-primary-soft);
     color: var(--color-primary);
-    font-size: var(--font-step);
+    font-size: var(--font-small);
     line-height: 1;
     font-weight: 600;
     letter-spacing: var(--tracking-heading);
@@ -97,37 +106,17 @@ const steps = [
     font-size: var(--font-small);
     max-width: 38ch;
   }
-  .process-note {
-    color: var(--color-muted);
-    font-size: var(--font-caption);
-  }
-  @media (min-width: 40rem) {
+  @media (min-width: 48rem) {
     ol {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-8);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
     li {
-      display: block;
+      grid-template-columns: minmax(0, 1fr);
     }
-    .step-number {
-      margin-bottom: var(--space-6);
-    }
-    li:not(:last-child)::after {
-      display: none;
-    }
-  }
-  @media (min-width: 64rem) {
-    ol {
-      grid-template-columns: repeat(4, 1fr);
-    }
-    li:not(:last-child)::after {
-      display: block;
-      top: 1.75rem;
-      left: calc(3.5rem + var(--space-4));
-      right: 0;
-      bottom: auto;
-      width: auto;
-      height: var(--border-width);
+    .step-arrow {
+      inset-inline-start: calc(100% + var(--process-gap) / 2);
+      inset-block-start: 50%;
+      rotate: 0deg;
     }
   }
   li:nth-child(2) {
@@ -152,19 +141,13 @@ const steps = [
         view-timeline-name: --binding-process-view;
         view-timeline-axis: block;
       }
-      .step-number,
-      li:not(:last-child)::after {
+      .step-number {
+        animation-name: step-arrive;
         animation-duration: auto;
         animation-timing-function: var(--ease-out);
         animation-fill-mode: both;
         animation-timeline: --binding-process-view;
         animation-range: entry var(--step-start, 0%) entry var(--step-end, 55%);
-      }
-      .step-number {
-        animation-name: step-arrive;
-      }
-      li:not(:last-child)::after {
-        animation-name: connector-arrive;
       }
     }
     @supports (animation-trigger: --binding-process play-once) and
@@ -177,11 +160,6 @@ const steps = [
           backwards;
         animation-trigger: --binding-process play-once;
       }
-      li:not(:last-child)::after {
-        animation: connector-arrive 480ms var(--ease-out)
-          calc(var(--step-delay, 0ms) + 100ms) backwards;
-        animation-trigger: --binding-process play-once;
-      }
     }
   }
   @keyframes step-arrive {
@@ -190,28 +168,6 @@ const steps = [
     }
     to {
       transform: none;
-    }
-  }
-  @keyframes connector-arrive {
-    from {
-      opacity: 0.16;
-      transform: scaleY(0.6);
-    }
-    to {
-      opacity: 0.3;
-      transform: none;
-    }
-  }
-  @media (min-width: 64rem) {
-    @keyframes connector-arrive {
-      from {
-        opacity: 0.16;
-        transform: scaleX(0.6);
-      }
-      to {
-        opacity: 0.3;
-        transform: none;
-      }
     }
   }
 </style>

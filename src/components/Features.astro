@@ -13,79 +13,75 @@ const capabilities = [
   aria-labelledby="solutions-title"
 >
   <div class="container">
-    <h2 id="solutions-title">Soluciones Binding.</h2>
+    <div class="section-heading">
+      <h2 id="solutions-title">Soluciones Binding</h2>
+    </div>
     <div class="solutions-panel">
       <article class="identity-card" aria-labelledby="identity-title">
-        <div class="identity-overview">
-          <div class="identity-brand">
-            <h3 id="identity-title">
-              <img
-                src={assets.identity.src}
-                width={assets.identity.width}
-                height={assets.identity.height}
-                alt={assets.identity.alt}
-                loading="lazy"
-                decoding="async"
-              />
-            </h3>
+        <div class="identity-visual">
+          <div class="identity-illustration">
             <img
-              class="mascot"
-              src={assets.mascot.src}
-              width={assets.mascot.width}
-              height={assets.mascot.height}
+              class="identity-logo"
+              src={assets.identity.src}
+              width={assets.identity.width}
+              height={assets.identity.height}
               alt=""
               loading="lazy"
               decoding="async"
             />
-          </div>
-          <div class="identity-copy">
-            <p class="identity-proposition">
-              Check-in digital y verificación de identidad en segundos
-            </p>
-            <p class="identity-description">
-              Lectura de documentos, validación de identidad, firma electrónica
-              e integración con PMS en una solución preparada para hoteles y
-              cadenas.
-            </p>
+            <div
+              class="identity-artwork"
+              role="img"
+              aria-label="Panel de Binding Identity en un portátil, junto al terminal de check-in y la mascota de la marca"
+            ></div>
           </div>
         </div>
-        <div class="identity-details">
-          <h4>Qué incluye</h4>
-          <ul class="capabilities" role="list">
-            {capabilities.map((capability) => (
-              <li>{capability}</li>
-            ))}
-          </ul>
-          <div class="integration-brands">
-            <p>Integraciones con sistemas hoteleros</p>
-            <div class="integration-logos">
-              <a
-                href="https://finder.sihot.com/products/Binding/"
-                aria-label="Binding en el directorio de SIHOT"
-              >
-                <img
-                  src={assets.sihot.src}
-                  width={assets.sihot.width}
-                  height={assets.sihot.height}
-                  alt={assets.sihot.alt}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </a>
-              <a
-                href="https://marketplace.oracle.com/listings/bindingidentity/ocid1.mktpublisting.oc1.iad.amaaaaaa7n473kaa3ymsluywmblyd45cpwiemoxa5l4fx2if7g3aqevglolq"
-                aria-label="Binding Identity en Oracle Marketplace"
-              >
-                <img
-                  src={assets.oracle.src}
-                  width={assets.oracle.width}
-                  height={assets.oracle.height}
-                  alt={assets.oracle.alt}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </a>
-            </div>
+        <div class="identity-copy">
+          <h3 id="identity-title">Binding Identity</h3>
+          <p class="identity-proposition">
+            Check-in digital y verificación de identidad en segundos
+          </p>
+          <p class="identity-description">
+            Lectura de documentos, validación de identidad, firma electrónica
+            e integración con PMS en una solución preparada para hoteles y
+            cadenas.
+          </p>
+          <div class="identity-details">
+            <h4>Qué incluye</h4>
+            <ul class="capabilities" role="list">
+              {capabilities.map((capability) => <li>{capability}</li>)}
+            </ul>
+          </div>
+        </div>
+        <div class="integration-brands">
+          <p>Integraciones con sistemas hoteleros</p>
+          <div class="integration-logos">
+            <a
+              href="https://finder.sihot.com/products/Binding/"
+              aria-label="Binding en el directorio de SIHOT"
+            >
+              <img
+                src={assets.sihot.src}
+                width={assets.sihot.width}
+                height={assets.sihot.height}
+                alt={assets.sihot.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
+            <a
+              href="https://marketplace.oracle.com/listings/bindingidentity/ocid1.mktpublisting.oc1.iad.amaaaaaa7n473kaa3ymsluywmblyd45cpwiemoxa5l4fx2if7g3aqevglolq"
+              aria-label="Binding Identity en Oracle Marketplace"
+            >
+              <img
+                src={assets.oracle.src}
+                width={assets.oracle.width}
+                height={assets.oracle.height}
+                alt={assets.oracle.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </a>
           </div>
         </div>
       </article>
@@ -93,18 +89,38 @@ const capabilities = [
         <h3 id="services-title">Servicios complementarios</h3>
         <div class="service-grid">
           <article class="service-card">
-            <h4>Consultoría operativa</h4>
-            <p>
-              Rediseño de procesos para reducir tareas manuales y coordinar la
-              recepción.
-            </p>
+            <img
+              class="service-icon"
+              src="/assets/icons/consultoria-operativa.svg"
+              width="56"
+              height="56"
+              alt=""
+              loading="lazy"
+            />
+            <div>
+              <h4>Consultoría operativa</h4>
+              <p>
+                Rediseño de procesos para reducir tareas manuales y coordinar la
+                recepción.
+              </p>
+            </div>
           </article>
           <article class="service-card">
-            <h4>Integraciones hoteleras</h4>
-            <p>
-              Conexión entre herramientas para compartir datos y evitar tareas
-              duplicadas.
-            </p>
+            <img
+              class="service-icon"
+              src="/assets/icons/integraciones-hoteleras.svg"
+              width="56"
+              height="56"
+              alt=""
+              loading="lazy"
+            />
+            <div>
+              <h4>Integraciones hoteleras</h4>
+              <p>
+                Conexión entre herramientas para compartir datos y evitar tareas
+                duplicadas.
+              </p>
+            </div>
           </article>
         </div>
       </section>
@@ -112,49 +128,60 @@ const capabilities = [
   </div>
 </section>
 <style>
-  h2 {
-    margin-bottom: var(--space-8);
-  }
-  .identity-card,
-  .identity-overview {
-    display: grid;
-    gap: var(--space-6);
-    min-width: 0;
-  }
   .identity-card {
-    padding: var(--space-6);
-    background: var(--color-primary-soft);
+    display: grid;
+    min-inline-size: 0;
+    background: var(--color-background);
     border: var(--border-width) solid var(--color-line);
     border-radius: var(--radius-panel);
   }
+  .identity-visual {
+    display: grid;
+    place-items: center;
+    padding: clamp(var(--space-4), 2vw, var(--space-8));
+    background: var(--color-surface);
+    border-radius: calc(var(--radius-panel) - 1px) calc(var(--radius-panel) - 1px) 0 0;
+  }
+  .identity-illustration {
+    display: grid;
+    justify-items: center;
+    inline-size: 100%;
+    padding-block-start: var(--space-2);
+    overflow: hidden;
+    border-radius: var(--radius-button);
+    background: var(--color-background);
+  }
+  .identity-logo {
+    inline-size: min(42%, 10rem);
+    block-size: auto;
+  }
+  .identity-artwork {
+    inline-size: 100%;
+    aspect-ratio: 1.86;
+    background: url('/assets/product/binding-identity-dispositivos.jpg') right bottom / 150% auto no-repeat;
+  }
+  .identity-copy {
+    display: grid;
+    align-content: center;
+    min-inline-size: 0;
+    gap: var(--space-3);
+    padding: clamp(var(--space-6), 4vw, var(--space-12));
+  }
+  .identity-copy h3 {
+    color: var(--color-primary);
+    font-size: var(--font-small);
+    letter-spacing: 0;
+  }
   .identity-details {
     display: grid;
-    gap: var(--space-4);
-    align-content: start;
-    min-width: 0;
+    gap: var(--space-3);
+    margin-top: var(--space-2);
   }
   .identity-details > h4 {
     margin: 0;
     font-size: var(--font-body);
     font-weight: 600;
     line-height: 1.4;
-  }
-  .identity-brand {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: var(--space-4);
-    align-items: center;
-  }
-  .identity-brand h3 {
-    min-width: 0;
-  }
-  .identity-brand h3 img {
-    width: 12rem;
-    height: auto;
-  }
-  .mascot {
-    width: var(--space-16);
-    height: auto;
   }
   .identity-proposition {
     max-width: 30ch;
@@ -165,7 +192,6 @@ const capabilities = [
     text-wrap: balance;
   }
   .identity-description {
-    margin-top: var(--space-4);
     color: var(--color-muted);
     font-size: var(--font-small);
   }
@@ -185,7 +211,11 @@ const capabilities = [
     color: var(--color-primary);
   }
   .integration-brands {
-    padding-top: var(--space-4);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0 var(--space-6);
+    padding: var(--space-3) clamp(var(--space-6), 4vw, var(--space-12));
     border-top: var(--border-width) solid var(--color-line);
   }
   .integration-brands > p {
@@ -222,8 +252,9 @@ const capabilities = [
   }
   .service-card {
     display: grid;
-    align-content: start;
-    gap: var(--space-2);
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-4);
     min-width: 0;
     padding: var(--space-4);
     background: var(--color-surface);
@@ -238,18 +269,24 @@ const capabilities = [
     letter-spacing: -0.02em;
   }
   .service-card p {
+    margin-top: var(--space-2);
     color: var(--color-muted);
     font-size: var(--font-small);
   }
+  .service-icon {
+    inline-size: 3.5rem;
+    block-size: 3.5rem;
+    object-fit: contain;
+  }
   @media (min-width: 48rem) {
     .identity-card {
-      padding: var(--space-8);
-      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-      gap: var(--space-8);
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     }
-    .identity-details {
-      padding-inline-start: var(--space-6);
-      border-inline-start: var(--border-width) solid var(--color-line);
+    .identity-visual {
+      border-radius: calc(var(--radius-panel) - 1px) 0 0 0;
+    }
+    .integration-brands {
+      grid-column: 1 / -1;
     }
     .service-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));

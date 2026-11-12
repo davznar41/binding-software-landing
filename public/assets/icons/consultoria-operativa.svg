@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Bocadillo de diálogo (Negro) -->
+  <g fill="none" stroke="#000000" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 76 32 H 292 A 28 28 0 0 1 320 60 V 188 A 28 28 0 0 1 292 216 H 212 L 184 252 L 156 216 H 76 A 28 28 0 0 1 48 188 V 60 A 28 28 0 0 1 76 32 Z"/>
+    <line x1="112" y1="90" x2="256" y2="90"/>
+    <line x1="112" y1="128" x2="256" y2="128"/>
+    <line x1="146" y1="166" x2="222" y2="166"/>
+  </g>
+
+  <!-- Silueta de usuario (Negro) -->
+  <g fill="none" stroke="#000000" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="114" cy="340" r="46"/>
+    <path d="M 32 480 C 32 426 68 398 114 398 C 160 398 196 426 196 480 Z"/>
+  </g>
+
+  <!-- Gráfico de barras y flecha ascendente (Violeta) -->
+  <g fill="none" stroke="#6D3B82" stroke-width="24" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="236" y="384" width="44" height="96" rx="10"/>
+    <rect x="328" y="336" width="44" height="144" rx="10"/>
+    <rect x="420" y="284" width="44" height="196" rx="10"/>
+    <path d="M 234 326 Q 354 316 458 214"/>
+    <polyline points="416,210 462,210 462,256"/>
+  </g>
+</svg>

@@ -100,6 +100,18 @@ h2[id] {
 .section {
   padding-block: var(--space-section);
 }
+.section-heading {
+  display: grid;
+  gap: var(--space-4);
+  margin-block-end: var(--space-8);
+}
+.section-heading h2 {
+  max-inline-size: 34ch;
+}
+.section-heading p {
+  max-inline-size: 65ch;
+  color: var(--color-muted);
+}
 .lead {
   font-size: var(--font-lead);
 }

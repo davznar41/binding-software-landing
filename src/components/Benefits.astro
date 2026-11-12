@@ -33,14 +33,14 @@ const savings = [
   aria-labelledby="benefits-title"
 >
   <div class="container">
-    <div class="benefits-heading">
-      <h2 id="benefits-title">Un impacto tangible en tu hotel.</h2>
+    <div class="section-heading">
+      <h2 id="benefits-title">Un impacto tangible en tu hotel</h2>
       <p>
         Menos tareas manuales en horas punta, más control operativo y más tiempo
         para atender al huésped.
       </p>
     </div>
-    <p class="results-context">
+    <p class="results-context editorial-context">
       Datos y afirmaciones publicados por Binding. Son un ejemplo de referencia,
       no una garantía de ahorro, retorno o cumplimiento para cualquier hotel:
       dependen de su configuración y operativa.{' '}
@@ -74,7 +74,7 @@ const savings = [
     </ul>
     <div class="economic-impact">
       <h3 id="economic-title">Impacto económico anual por hotel</h3>
-      <p class="economic-intro">
+      <p class="economic-intro editorial-context">
         Ejemplo publicado por Binding para un hotel de{' '}
         <strong>200 habitaciones y 75 % de ocupación</strong>. En este
         escenario, el retorno puede llegar en <strong>1–3 meses</strong>, entre
@@ -94,26 +94,21 @@ const savings = [
         ))}
       </ul>
     </div>
-    <div class="results-footer">
-      <a class="button results-contact" href={officialContact}>
-        Solicitar información <Arrow />
-      </a>
+  </div>
+</section>
+
+<section class="section contact-band" aria-labelledby="contact-band-title">
+  <div class="container contact-band-inner">
+    <div>
+      <h2 id="contact-band-title">Hablemos de la operativa de tu hotel</h2>
+      <p>Cuéntanos cómo gestionas el check-in y qué procesos quieres conectar.</p>
     </div>
+    <a class="button results-contact" href={officialContact}>
+      Solicitar información <Arrow />
+    </a>
   </div>
 </section>
 <style>
-  .benefits-heading {
-    display: grid;
-    gap: var(--space-4);
-    margin-bottom: var(--space-4);
-  }
-  .benefits-heading h2 {
-    max-width: 24ch;
-  }
-  .benefits-heading > p {
-    max-width: 65ch;
-    color: var(--color-muted);
-  }
   ul {
     display: grid;
     gap: var(--space-6);
@@ -161,14 +156,16 @@ const savings = [
   .economic-impact > h3 {
     font-size: var(--font-value);
   }
-  .economic-intro {
-    margin-top: var(--space-4);
-    margin-bottom: var(--space-6);
-    padding-inline-start: var(--space-4);
+  .editorial-context {
+    max-inline-size: 78ch;
+    padding: var(--space-4) var(--space-6);
     border-inline-start: 3px solid var(--color-primary);
+    background: var(--color-surface);
     color: var(--color-muted);
-    max-width: 78ch;
     font-size: var(--font-small);
+  }
+  .economic-intro {
+    margin-block: var(--space-4) var(--space-6);
   }
   .economic-results {
     gap: var(--space-4);
@@ -207,18 +204,23 @@ const savings = [
     font-weight: 600;
     line-height: 1.4;
   }
-  .results-footer {
-    display: flex;
-    margin-top: var(--space-8);
-  }
   .results-context {
     margin-bottom: var(--space-8);
-    color: var(--color-muted);
-    font-size: var(--font-caption);
-    max-width: 88ch;
   }
-  .results-contact {
-    justify-self: start;
+  .contact-band {
+    border-block: var(--border-width) solid var(--color-line);
+    background: var(--color-surface);
+  }
+  .contact-band-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+  .contact-band p {
+    margin-top: var(--space-3);
+    color: var(--color-muted);
   }
   @media (min-width: 48rem) {
     ul {
@@ -240,9 +242,6 @@ const savings = [
     }
     .economic-results > li {
       padding: var(--space-6);
-    }
-    .results-footer {
-      justify-content: flex-end;
     }
   }
   @media (prefers-reduced-motion: no-preference) {

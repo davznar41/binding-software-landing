@@ -5,24 +5,24 @@
   --site-header-height: 4.5625rem;
   --hero-overlay-desktop:
     linear-gradient(
-      to top,
-      rgb(20 14 28 / 88%),
-      rgb(20 14 28 / 75%) 13%,
-      transparent 32%
+      90deg,
+      rgb(20 14 28 / 96%) 0%,
+      rgb(20 14 28 / 86%) 43%,
+      rgb(20 14 28 / 75%) 61%,
+      rgb(20 14 28 / 18%) 100%
     ),
     linear-gradient(
-      to right,
-      rgb(20 14 28 / 90%),
-      rgb(20 14 28 / 82%) 43%,
-      rgb(20 14 28 / 76%) 62%,
-      rgb(20 14 28 / 28%)
+      180deg,
+      rgb(20 14 28 / 75%) 0%,
+      transparent 24%,
+      transparent 73%,
+      rgb(20 14 28 / 70%) 100%
     );
   --hero-overlay-mobile: linear-gradient(
-    to bottom,
-    rgb(20 14 28 / 84%),
-    rgb(20 14 28 / 74%) 38%,
-    rgb(20 14 28 / 74%) 65%,
-    rgb(20 14 28 / 90%)
+    180deg,
+    rgb(20 14 28 / 92%) 0%,
+    rgb(20 14 28 / 78%) 52%,
+    rgb(20 14 28 / 86%) 100%
   );
   --color-text: #241d2d;
   --color-muted: #625969;
